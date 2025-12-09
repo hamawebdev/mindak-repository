@@ -1,0 +1,107 @@
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      target: dev
+    container_name: web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app:cached
+      - web_node_modules:/app/node_modules # <-- fixed
+    env_file:
+      - ./web/.env.local
+    command: >
+      sh -c "npm run dev"
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: dev # <-- dev stage
+    container_name: backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app # live reload
+      - backend_node_modules:/app/node_modules
+    env_file:
+      - ./backend/.env
+    stdin_open: true
+    tty: true
+    networks:
+      - app-network
+
+  db:
+    container_name: postgres
+    image: postgres:15.6-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "app_db"
+    networks:
+      - app-network
+
+  minio.minio.svc.cluster.local:
+    image: minio/minio:latest
+    container_name: s3_bucket
+    ports:
+      - "9090:9000"
+      - "9091:9001"
+    environment:
+      MINIO_ROOT_USER: "MINIO_ROOT_USER"
+      MINIO_ROOT_PASSWORD: "MINIO_ROOT_PASSWORD"
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  tusd:
+    image: tusproject/tusd@sha256:060f117d224d057a5f25be79b4a4535168a0901515cc20cd02f62d0b8e623f5f
+    container_name: tusd_server
+    command: |
+      -verbose
+      -s3-bucket tourism-bucket
+      -s3-endpoint http://minio.minio.svc.cluster.local:9000
+      -cors-allow-credentials
+      -cors-allow-origin https://allebooking.local
+      -behind-proxy=true
+      -hooks-http http://backend:8080/storage/upload_callback
+      -hooks-http-forward-headers Cookie
+      -hooks-http-retry 1
+      -port 1080
+    volumes:
+      - tusd:/data
+    environment:
+      AWS_REGION: eu-west-1
+      AWS_ACCESS_KEY_ID: "MINIO_ROOT_USER"
+      AWS_SECRET_ACCESS_KEY: "MINIO_ROOT_PASSWORD"
+    networks:
+      - app-network
+
+volumes:
+  data:
+  web_node_modules: # <-- declared
+  backend_node_modules: # <-- declared
+  minio_data:
+    driver: local
+  tusd:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
