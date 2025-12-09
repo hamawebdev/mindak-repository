@@ -1,0 +1,55 @@
+/* CSS Inspector (https://radiance.family) */ 
+
+label {
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	color: hsl(60, 14%, 95%);
+	columns: auto;
+	cursor: default;
+	font-family: "Helvetica Now", sans-serif;
+	font-size: 38.4px;
+	font-weight: 800;
+	letter-spacing: 1.6px;
+	line-height: 38.4px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+textarea#field8 {
+	appearance: auto;
+	border-bottom: 0.8px solid hsl(60, 1%, 28%);
+	box-sizing: border-box;
+	columns: auto;
+	cursor: text;
+	max-height: 300px;
+	overflow: auto;
+	padding: 20px 8px;
+	scrollbar-width: none;
+	transition: border 0.25s ease-in;
+}
+
+div#next-8.next-question.step-button {
+	-webkit-font-smoothing: antialiased;
+	background-color: hsl(0, 0%, 100%);
+	border-radius: 8px;
+	box-sizing: border-box;
+	color: hsl(0, 0%, 2%);
+	columns: auto;
+	cursor: pointer;
+	font-family: "Helvetica Now", sans-serif;
+	font-size: 22.4px;
+	line-height: 22.4px;
+	padding: 20px 60px;
+	transform: matrix(0.95, 0, 0, 0.95, 0, 0);
+	transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+div#step-8.form-step {
+	align-items: center;
+	box-sizing: border-box;
+	columns: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+	justify-content: center;
+}

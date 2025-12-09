@@ -1,0 +1,15 @@
+export const ROUTERS_DI_TYPES = {
+  ApiRouter: Symbol.for('ApiRouter'),
+  AuthRouter: Symbol.for('AuthRouter'),
+  UsersRouter: Symbol.for('UsersRouter'),
+  HealthRouter: Symbol.for('HealthRouter'),
+  AdminFormsRouter: Symbol.for('AdminFormsRouter'),
+  ClientFormsRouter: Symbol.for('ClientFormsRouter'),
+  AdminServicesRouter: Symbol.for('AdminServicesRouter'),
+  ClientServicesRouter: Symbol.for('ClientServicesRouter'),
+  AdminReservationsRouter: Symbol.for('AdminReservationsRouter'),
+  ClientReservationsRouter: Symbol.for('ClientReservationsRouter'),
+  AnalyticsRouter: Symbol.for('AnalyticsRouter'),
+  PodcastClientRouter: Symbol.for('PodcastClientRouter'),
+  AdminPodcastConfigurationRouter: Symbol.for('AdminPodcastConfigurationRouter'),
+};

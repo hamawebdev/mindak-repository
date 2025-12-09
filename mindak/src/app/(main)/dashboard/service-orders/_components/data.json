@@ -1,0 +1,303 @@
+[
+  {
+    "id": "SO-2024-001",
+    "customerName": "Acme Corporation",
+    "email": "contact@acmecorp.com",
+    "status": "completed",
+    "createdDate": "2024-10-15",
+    "serviceType": "Web Development",
+    "priority": "high",
+    "estimatedCompletion": "2024-11-30",
+    "budget": 15000,
+    "notes": "Client requested modern responsive design with focus on mobile experience.",
+    "formData": {
+      "projectDescription": "Complete website redesign with modern UI/UX",
+      "requirements": "Responsive design, SEO optimization, CMS integration",
+      "deliverables": "Fully functional website, documentation, training materials",
+      "timeline": "6 weeks from project start",
+      "additionalNotes": "Client prefers weekly progress meetings"
+    },
+    "metadata": {
+      "assignedTo": "John Smith",
+      "department": "Web Development",
+      "tags": ["web", "design", "responsive"],
+      "lastUpdated": "2024-11-28"
+    }
+  },
+  {
+    "id": "SO-2024-002",
+    "customerName": "TechStart Inc.",
+    "email": "hello@techstart.io",
+    "status": "in-progress",
+    "createdDate": "2024-10-20",
+    "serviceType": "Mobile App Development",
+    "priority": "urgent",
+    "estimatedCompletion": "2024-12-15",
+    "budget": 25000,
+    "notes": "iOS and Android native apps required. Push notifications essential.",
+    "formData": {
+      "projectDescription": "Cross-platform mobile application for e-commerce",
+      "requirements": "Native iOS/Android, payment integration, real-time notifications",
+      "deliverables": "iOS app, Android app, backend API, admin dashboard",
+      "timeline": "8 weeks development + 2 weeks testing",
+      "additionalNotes": "Must comply with App Store and Play Store guidelines"
+    },
+    "metadata": {
+      "assignedTo": "Sarah Johnson",
+      "department": "Mobile Development",
+      "tags": ["mobile", "ios", "android", "e-commerce"],
+      "lastUpdated": "2024-11-04"
+    }
+  },
+  {
+    "id": "SO-2024-003",
+    "customerName": "Global Consulting Group",
+    "email": "projects@globalconsulting.com",
+    "status": "pending",
+    "createdDate": "2024-11-01",
+    "serviceType": "UI/UX Design",
+    "priority": "medium",
+    "estimatedCompletion": "2024-12-01",
+    "budget": 8000,
+    "notes": "Focus on user research and wireframing before high-fidelity designs.",
+    "formData": {
+      "projectDescription": "Complete UI/UX redesign for enterprise dashboard",
+      "requirements": "User research, wireframes, prototypes, design system",
+      "deliverables": "Figma files, design system documentation, interactive prototypes",
+      "timeline": "4 weeks",
+      "additionalNotes": "Client has existing brand guidelines to follow"
+    },
+    "metadata": {
+      "assignedTo": "Emily Chen",
+      "department": "Design",
+      "tags": ["design", "ux", "enterprise"],
+      "lastUpdated": "2024-11-02"
+    }
+  },
+  {
+    "id": "SO-2024-004",
+    "customerName": "HealthTech Solutions",
+    "email": "info@healthtech.com",
+    "status": "in-progress",
+    "createdDate": "2024-10-25",
+    "serviceType": "Cloud Infrastructure",
+    "priority": "high",
+    "estimatedCompletion": "2024-12-10",
+    "budget": 18000,
+    "notes": "HIPAA compliance is mandatory. Security audit required before launch.",
+    "formData": {
+      "projectDescription": "AWS cloud infrastructure setup and migration",
+      "requirements": "HIPAA compliance, auto-scaling, disaster recovery, monitoring",
+      "deliverables": "Cloud infrastructure, documentation, security audit report",
+      "timeline": "6 weeks",
+      "additionalNotes": "24/7 support required post-launch"
+    },
+    "metadata": {
+      "assignedTo": "Michael Rodriguez",
+      "department": "DevOps",
+      "tags": ["cloud", "aws", "security", "healthcare"],
+      "lastUpdated": "2024-11-03"
+    }
+  },
+  {
+    "id": "SO-2024-005",
+    "customerName": "EduLearn Platform",
+    "email": "support@edulearn.com",
+    "status": "completed",
+    "createdDate": "2024-09-15",
+    "serviceType": "API Development",
+    "priority": "medium",
+    "estimatedCompletion": "2024-10-30",
+    "budget": 12000,
+    "notes": "RESTful API with comprehensive documentation. Client very satisfied with results.",
+    "formData": {
+      "projectDescription": "Backend API for learning management system",
+      "requirements": "RESTful API, authentication, role-based access, real-time features",
+      "deliverables": "API endpoints, documentation, testing suite, deployment guide",
+      "timeline": "5 weeks",
+      "additionalNotes": "GraphQL support may be added in future phase"
+    },
+    "metadata": {
+      "assignedTo": "David Kim",
+      "department": "Backend Development",
+      "tags": ["api", "backend", "education"],
+      "lastUpdated": "2024-10-28"
+    }
+  },
+  {
+    "id": "SO-2024-006",
+    "customerName": "RetailMax",
+    "email": "digital@retailmax.com",
+    "status": "pending",
+    "createdDate": "2024-11-02",
+    "serviceType": "E-commerce Integration",
+    "priority": "high",
+    "estimatedCompletion": "2024-12-20",
+    "budget": 20000,
+    "notes": "Integration with existing inventory system critical. Holiday season deadline.",
+    "formData": {
+      "projectDescription": "Shopify integration with custom inventory management",
+      "requirements": "Real-time inventory sync, payment gateway, shipping integration",
+      "deliverables": "Integrated e-commerce platform, admin tools, user documentation",
+      "timeline": "7 weeks",
+      "additionalNotes": "Must be live before Black Friday"
+    },
+    "metadata": {
+      "assignedTo": "Lisa Anderson",
+      "department": "E-commerce",
+      "tags": ["e-commerce", "shopify", "integration"],
+      "lastUpdated": "2024-11-03"
+    }
+  },
+  {
+    "id": "SO-2024-007",
+    "customerName": "FinanceFlow",
+    "email": "tech@financeflow.com",
+    "status": "cancelled",
+    "createdDate": "2024-10-10",
+    "serviceType": "Data Analytics",
+    "priority": "low",
+    "estimatedCompletion": "2024-11-25",
+    "budget": 10000,
+    "notes": "Project cancelled due to client budget constraints. May resume in Q1 2025.",
+    "formData": {
+      "projectDescription": "Business intelligence dashboard with predictive analytics",
+      "requirements": "Data visualization, real-time reporting, ML predictions",
+      "deliverables": "Analytics dashboard, data pipeline, reporting tools",
+      "timeline": "6 weeks",
+      "additionalNotes": "Client interested in phased approach"
+    },
+    "metadata": {
+      "assignedTo": "Robert Chen",
+      "department": "Data Science",
+      "tags": ["analytics", "bi", "ml"],
+      "lastUpdated": "2024-10-20"
+    }
+  },
+  {
+    "id": "SO-2024-008",
+    "customerName": "MediaStream Co.",
+    "email": "projects@mediastream.tv",
+    "status": "in-progress",
+    "createdDate": "2024-10-28",
+    "serviceType": "Video Platform",
+    "priority": "urgent",
+    "estimatedCompletion": "2024-12-05",
+    "budget": 30000,
+    "notes": "High-traffic video streaming platform. Performance optimization critical.",
+    "formData": {
+      "projectDescription": "Custom video streaming platform with CDN integration",
+      "requirements": "Video transcoding, adaptive streaming, DRM, analytics",
+      "deliverables": "Streaming platform, admin panel, mobile apps, CDN setup",
+      "timeline": "8 weeks",
+      "additionalNotes": "Expected 100K concurrent users at launch"
+    },
+    "metadata": {
+      "assignedTo": "Jennifer Lee",
+      "department": "Media Technology",
+      "tags": ["video", "streaming", "cdn", "media"],
+      "lastUpdated": "2024-11-04"
+    }
+  },
+  {
+    "id": "SO-2024-009",
+    "customerName": "SmartHome Innovations",
+    "email": "dev@smarthome.io",
+    "status": "pending",
+    "createdDate": "2024-11-03",
+    "serviceType": "IoT Development",
+    "priority": "medium",
+    "estimatedCompletion": "2025-01-15",
+    "budget": 22000,
+    "notes": "IoT device integration with mobile app control. Security is top priority.",
+    "formData": {
+      "projectDescription": "IoT platform for smart home device management",
+      "requirements": "Device connectivity, real-time control, automation rules, security",
+      "deliverables": "IoT backend, mobile apps, device firmware, cloud infrastructure",
+      "timeline": "10 weeks",
+      "additionalNotes": "Support for Zigbee and Z-Wave protocols required"
+    },
+    "metadata": {
+      "assignedTo": "Thomas Wilson",
+      "department": "IoT Development",
+      "tags": ["iot", "smart-home", "mobile"],
+      "lastUpdated": "2024-11-04"
+    }
+  },
+  {
+    "id": "SO-2024-010",
+    "customerName": "TravelHub",
+    "email": "tech@travelhub.com",
+    "status": "completed",
+    "createdDate": "2024-09-20",
+    "serviceType": "Booking System",
+    "priority": "high",
+    "estimatedCompletion": "2024-11-10",
+    "budget": 28000,
+    "notes": "Complex booking system with multiple integrations. Successfully delivered on time.",
+    "formData": {
+      "projectDescription": "Travel booking platform with flight and hotel integration",
+      "requirements": "Multi-vendor integration, payment processing, booking management",
+      "deliverables": "Booking platform, admin dashboard, mobile apps, API integrations",
+      "timeline": "8 weeks",
+      "additionalNotes": "Integration with Amadeus and Sabre APIs"
+    },
+    "metadata": {
+      "assignedTo": "Amanda Martinez",
+      "department": "Travel Technology",
+      "tags": ["travel", "booking", "integration"],
+      "lastUpdated": "2024-11-08"
+    }
+  },
+  {
+    "id": "SO-2024-011",
+    "customerName": "FitnessPro",
+    "email": "hello@fitnesspro.app",
+    "status": "in-progress",
+    "createdDate": "2024-10-30",
+    "serviceType": "Mobile App Development",
+    "priority": "medium",
+    "estimatedCompletion": "2024-12-22",
+    "budget": 16000,
+    "notes": "Fitness tracking app with social features. Wearable device integration needed.",
+    "formData": {
+      "projectDescription": "Fitness tracking mobile app with social networking",
+      "requirements": "Activity tracking, social features, wearable integration, gamification",
+      "deliverables": "iOS/Android apps, backend API, admin panel",
+      "timeline": "7 weeks",
+      "additionalNotes": "Apple Health and Google Fit integration required"
+    },
+    "metadata": {
+      "assignedTo": "Chris Taylor",
+      "department": "Mobile Development",
+      "tags": ["mobile", "fitness", "health", "social"],
+      "lastUpdated": "2024-11-04"
+    }
+  },
+  {
+    "id": "SO-2024-012",
+    "customerName": "LegalTech Partners",
+    "email": "projects@legaltech.com",
+    "status": "pending",
+    "createdDate": "2024-11-04",
+    "serviceType": "Document Management",
+    "priority": "high",
+    "estimatedCompletion": "2024-12-30",
+    "budget": 19000,
+    "notes": "Legal document management system with e-signature capability.",
+    "formData": {
+      "projectDescription": "Secure document management system for law firms",
+      "requirements": "Document storage, version control, e-signature, audit trails",
+      "deliverables": "Web platform, document templates, integration APIs, security audit",
+      "timeline": "8 weeks",
+      "additionalNotes": "Must comply with legal industry standards"
+    },
+    "metadata": {
+      "assignedTo": "Patricia Brown",
+      "department": "Enterprise Solutions",
+      "tags": ["legal", "documents", "security"],
+      "lastUpdated": "2024-11-05"
+    }
+  }
+]
+

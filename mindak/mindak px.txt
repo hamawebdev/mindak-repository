@@ -1,0 +1,22 @@
+titles: 100px
+body: 36px
+numbers in about us section: 88px
+
+header : 
+header nav links : 100px
+spacing between each nav link : 43.85px
+logo : height : 72.62px | width : 109.72px
+
+hero:
+spacing between header and hero text : 214.83px
+spacing between hero text and hero description : 70.93px
+spacing between hero description and CTA button : 147.17px
+
+
+
+
+Samples :
+spacing between each reel : 40.28px
+reel : height : 792.37px | width : 404.72px
+
+

@@ -1,0 +1,30 @@
+/* CSS Inspector (https://radiance.family) */ 
+
+input#checkbox-1.checkbox-input {
+	border-radius: 16px;
+	box-sizing: border-box;
+	columns: auto;
+	cursor: pointer;
+	position: absolute;
+	transition: border 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+div.checkbox-grid.two-rows {
+	align-content: center;
+	box-sizing: border-box;
+	columns: auto;
+	display: grid;
+	gap: 9.6px;
+	grid-template-columns: 209.663px 209.663px 209.663px 209.663px 209.663px 209.663px;
+	grid-template-rows: 140.788px 140.788px;
+	justify-content: center;
+}
+
+input#checkbox-8.checkbox-input {
+	border-radius: 16px;
+	box-sizing: border-box;
+	columns: auto;
+	cursor: pointer;
+	position: absolute;
+	transition: border 0.25s ease-in;
+}

@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1758551215046,
+      "tag": "0000_createUserTable",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762533898934,
+      "tag": "0001_fixed_sister_grimm",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762538639187,
+      "tag": "0002_auth_tokens",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1762632586007,
+      "tag": "0003_long_kingpin",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1763729832355,
+      "tag": "0004_complex_lilith",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1763756745644,
+      "tag": "0005_ambitious_daredevil",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+/* CSS Inspector (https://akaru.fr) */ 
+
+div.HomeHero-content {
+	align-items: center;
+	box-sizing: border-box;
+	columns: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+
+div.HomeHero-textFakeTitle {
+	box-sizing: border-box;
+	columns: auto;
+}
+
+path {
+	box-sizing: border-box;
+	columns: auto;
+	display: inline;
+	fill: #0e0e0e;
+}
+
+div.lines.lines1 {
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	color: #0e0e0e;
+	columns: auto;
+	font-family: "Alliance Neue", sans-serif;
+	font-kerning: none;
+	font-size: 19.1999px;
+	position: relative;
+	text-align: center;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+	word-break: break-word;
+}
+
+div.lines.lines2 {
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	color: #0e0e0e;
+	columns: auto;
+	font-family: "Alliance Neue", sans-serif;
+	font-kerning: none;
+	font-size: 19.1999px;
+	position: relative;
+	text-align: center;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+	word-break: break-word;
+}
+
+a.AppLink.HomeHero-socialLink.AppSmallText-1.--dark.--fwb {
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	color: #0e0e0e;
+	columns: auto;
+	cursor: pointer;
+	font-family: "Alliance Platt", serif;
+	font-kerning: none;
+	font-size: 10.6666px;
+	font-weight: 700;
+	letter-spacing: -0.53333px;
+	line-height: 14.9332px;
+	position: relative;
+	text-transform: uppercase;
+	transform: matrix(1, 0, 0, 1, 0, 0);
+}
+span.HomeHeroMenu-itemTitle.AppText-1.--fwsb.--dark {
+	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	color: #0e0e0e;
+	columns: auto;
+	cursor: pointer;
+	font-family: "Alliance Neue", sans-serif;
+	font-kerning: none;
+	font-size: 17.0666px;
+	font-weight: 500;
+}
+
+div.HomeHeroMenu-itemArrow {
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	border-radius: 100%;
+	box-sizing: border-box;
+	columns: auto;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+}
+
+a.AppLink.HomeHeroMenu-itemLink {
+	align-items: center;
+	box-sizing: border-box;
+	columns: auto;
+	cursor: pointer;
+	display: flex;
+	gap: 5.3333px;
+}
+
+div.HomeHero-contentInner {
+	box-sizing: border-box;
+	columns: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+
+ul.HomeHero-socials.--ttu.--inView {
+	box-sizing: border-box;
+	columns: auto;
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+	padding: 21.3332px 0px 0px;
+	position: relative;
+}
