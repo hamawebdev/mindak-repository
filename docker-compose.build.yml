@@ -1,0 +1,132 @@
+version: "3.9"
+
+services:
+  # -----------------------------
+  # WEB (Production)
+  # -----------------------------
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      target: prod
+    container_name: web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./web/.env.local
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  # -----------------------------
+  # BACKEND (Production)
+  # -----------------------------
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: server
+    container_name: backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+    environment:
+      NODE_ENV: production
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # -----------------------------
+  # POSTGRES (Production)
+  # -----------------------------
+  db:
+    container_name: postgres
+    image: postgres:15.6-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  # -----------------------------
+  # MINIO (Production)
+  # -----------------------------
+  minio:
+    image: minio/minio:latest
+    container_name: s3_bucket
+    ports:
+      - "9090:9000"
+      - "9091:9001"
+    environment:
+      MINIO_ROOT_USER: "MINIO_ROOT_USER"
+      MINIO_ROOT_PASSWORD: "MINIO_ROOT_PASSWORD"
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # -----------------------------
+  # TUSD (Production)
+  # -----------------------------
+  tusd:
+    image: tusproject/tusd@sha256:060f117d224d057a5f25be79b4a4535168a0901515cc20cd02f62d0b8e623f5f
+    container_name: tusd_server
+    command: |
+      -verbose
+      -s3-bucket tourism-bucket
+      -s3-endpoint http://minio:9000
+      -cors-allow-credentials
+      -cors-allow-origin https://allebooking.local
+      -behind-proxy=true
+      -hooks-http http://backend:8080/storage/upload_callback
+      -hooks-http-forward-headers Cookie
+      -hooks-http-retry 1
+      -port 1080
+    volumes:
+      - tusd:/data
+    environment:
+      AWS_REGION: eu-west-1
+      AWS_ACCESS_KEY_ID: "MINIO_ROOT_USER"
+      AWS_SECRET_ACCESS_KEY: "MINIO_ROOT_PASSWORD"
+    networks:
+      - app-network
+
+# -----------------------------
+# VOLUMES
+# -----------------------------
+volumes:
+  data:
+  minio_data:
+    driver: local
+  tusd:
+    driver: local
+
+# -----------------------------
+# NETWORKS
+# -----------------------------
+networks:
+  app-network:
+    driver: bridge

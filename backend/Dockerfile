@@ -4,20 +4,18 @@
 FROM node:22-alpine AS dev
 WORKDIR /app
 
-# Install dependencies first (better caching)
+# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the source code
+# Copy source code
 COPY . .
 
-# Expose port (your backend port, e.g. 8080 or ${PORT})
+# Expose port
 EXPOSE 8080
 
-# Default dev command
+# Dev command
 CMD ["npm", "run", "dev"]
-
-
 
 # -----------------------------
 # BUILD STAGE
@@ -33,8 +31,7 @@ COPY . .
 # Build the backend
 RUN npm run build
 
-
-
+# -----------------------------
 # -----------------------------
 # PRODUCTION STAGE
 # -----------------------------
@@ -43,16 +40,22 @@ WORKDIR /app
 
 # Copy build output
 COPY --from=builder /app/build ./build
-COPY --from=builder /app/src/infra/database/migrations ./build/infra/database/migrations
 
-# Install only production dependencies
-COPY package*.json ./
-RUN npm install --omit=dev
+# Copy source migrations and config so Drizzle can generate meta
+COPY --from=builder /app/src/infra/database/migrations ./src/infra/database/migrations
+COPY --from=builder /app/src/infra/database/config ./src/infra/database/config
 
-ENV DRIZZLE_OUT=build/infra/database/migrations
-ENV DRIZZLE_SCHEMA=build/infra/database/schemas
+# Copy package.json to install production deps
+COPY --from=builder /app/package*.json ./
+
+# Install production dependencies + drizzle-kit globally
+RUN npm install --omit=dev && npm install -g drizzle-kit
+
+# Environment variables for Drizzle
+ENV DRIZZLE_OUT=src/infra/database/migrations
+ENV DRIZZLE_SCHEMA=src/infra/database/schemas
 
 EXPOSE 8080
 
-# Run migrations then start the server
-CMD ["sh", "-c", "npm run migrate && npm start"]
+# Run migrations first, then start the server
+CMD ["sh", "-c", "npm run migration:run && npm start"]
