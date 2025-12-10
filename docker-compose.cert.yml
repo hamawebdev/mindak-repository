@@ -1,0 +1,61 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /root/nginx/conf.d/nginx-http-only.conf:/etc/nginx/nginx.conf:ro
+      - webroot:/var/www/html
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  # One-time certificate generation
+  certbot-init:
+    image: certbot/certbot:latest
+    command: certonly --webroot --webroot-path=/var/www/html --email yaakoubbelhardi@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring -d mindak.agency -d www.mindak.agency
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsengrypt
+      - webroot:/var/www/html
+    networks:
+      - app-network
+    deploy:
+      restart_policy:
+        condition: none
+
+  # Certificate renewal (runs every 12 hours)
+  certbot-renew:
+    image: certbot/certbot:latest
+    entrypoint: /bin/sh
+    command: >
+      -c "trap exit TERM; while :; do
+        certbot renew --webroot --webroot-path=/var/www/html --quiet;
+        sleep 12h & wait $${!};
+      done"
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - webroot:/var/www/html
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+volumes:
+  data:
+  webroot:
+  ssl:
+  nginx-cache:
+  certbot-etc:
+  certbot-var:
+  minio_data:
+  tusd:
+
+networks:
+  app-network:
+    external: true

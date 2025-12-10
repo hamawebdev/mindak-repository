@@ -1,39 +1,68 @@
 services:
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /root/nginx/conf.d/default.conf:/etc/nginx/nginx.conf:ro
+      - certbot-etc:/etc/letsencrypt
+      - webroot:/var/www/html
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  # One-time certificate generation
+  certbot:
+    image: certbot/certbot:latest
+    depends_on:
+      - nginx
+    command: certonly --webroot --webroot-path=/var/www/html --email yaakoubbelhardi@gmail.com --agree-tos --no-eff-email --non-interactive -d mindak.agency -d www.mindak.agency -d api.mindak.agency --expand
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - webroot:/var/www/html
+    networks:
+      - app-network
+    deploy:
+      restart_policy:
+        condition: none
+
   web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-      target: prod
-    container_name: web
-    restart: unless-stopped
+    image: mindak_web:latest
     ports:
       - "3000:3000"
     env_file:
       - ./web/.env.local
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      target: server
-    container_name: backend
+    image: mindak_backend:latest
     ports:
       - "8080:8080"
     env_file:
       - ./backend/.env
     environment:
       NODE_ENV: production
-    depends_on:
-      - db
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   db:
-    container_name: postgres
     image: postgres:15.6-alpine
     ports:
       - "5432:5432"
@@ -51,10 +80,13 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   minio:
     image: minio/minio:latest
-    container_name: s3_bucket
     ports:
       - "9090:9000"
       - "9091:9001"
@@ -72,10 +104,13 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   tusd:
     image: tusproject/tusd@sha256:060f117d224d057a5f25be79b4a4535168a0901515cc20cd02f62d0b8e623f5f
-    container_name: tusd_server
     command: |
       -verbose
       -s3-bucket tourism-bucket
@@ -95,12 +130,16 @@ services:
       AWS_SECRET_ACCESS_KEY: "MINIO_ROOT_PASSWORD"
     networks:
       - app-network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
 volumes:
   data:
-  web_node_modules:
-  backend_node_modules:
   webroot:
+  ssl:
+  nginx-cache:
   certbot-etc:
   certbot-var:
   minio_data:
@@ -108,4 +147,4 @@ volumes:
 
 networks:
   app-network:
-    driver: bridge
+    external: true

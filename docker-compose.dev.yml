@@ -95,12 +95,13 @@ services:
 
 volumes:
   data:
-  web_node_modules: # <-- declared
-  backend_node_modules: # <-- declared
+  web_node_modules:
+  backend_node_modules:
+  webroot:
+  certbot-etc:
+  certbot-var:
   minio_data:
-    driver: local
   tusd:
-    driver: local
 
 networks:
   app-network:

@@ -1,13 +1,13 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import { createServer } from '@/app/server';
-import { env } from '@/core/env/env';
-import { setupContainer } from '@/container/container';
-import { CORE_DI_TYPES } from '@/container/core/di-types';
-import type { ILogger } from '@/core/logger/logger.interface';
+import { createServer } from "@/app/server";
+import { env } from "@/core/env/env";
+import { setupContainer } from "@/container/container";
+import { CORE_DI_TYPES } from "@/container/core/di-types";
+import type { ILogger } from "@/core/logger/logger.interface";
 
-const host = env('HOST', '0.0.0.0');
-const port = env('PORT', '8080');
+const host = env("HOST", "0.0.0.0");
+const port = env("PORT", "8080");
 
 setupContainer()
   .then((container) => {
@@ -19,5 +19,5 @@ setupContainer()
   })
   .catch((error) => {
     // eslint-disable-next-line no-console -- we cannot use the logger here because it is not initialized yet
-    console.error('❌ Failed to start server:', error);
+    console.error("❌ Failed to start server:", error);
   });
