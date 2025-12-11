@@ -15,7 +15,7 @@ import type { BaseRouter } from "@/app/routers/base-router";
 
 export const createServer = (container: Container) => {
   const corsOptions = {
-    origin: env("https://mindak.agency", "https://www.mindak.agency"),
+    origin: env("CORS_ORIGIN_ALLOWED", "*"),
     credentials: true,
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   };

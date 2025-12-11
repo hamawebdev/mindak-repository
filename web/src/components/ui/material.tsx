@@ -6,12 +6,12 @@ import BlurText from "@/components/ui/blur-text";
 
 const equipment = [
   {
-    title: "Sony FX3",
-    src: "/Studio/material/material1.png",
-  },
-  {
     title: "RØDECaster Pro II",
     src: "/Studio/material/material2.png",
+  },
+  {
+    title: "Sony FX3",
+    src: "/Studio/material/material1.png",
   },
   {
     title: "RØDECaster Video S",
@@ -59,7 +59,7 @@ const MaterialSection = () => {
                   src={item.src}
                   alt={item.title}
                   fill
-                  className="object-cover scale-130"
+                  className="object-cover scale-100"
                 />
               </div>
               <p className="text-white text-2xl md:text-3xl mt-8 font-medium tracking-wide font-custom-sans text-center">

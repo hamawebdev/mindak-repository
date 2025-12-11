@@ -16,7 +16,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy all source code
-COPY ./ ./
+COPY . .
 
 # Dev command
 CMD ["npm", "run", "dev"]
@@ -27,15 +27,26 @@ CMD ["npm", "run", "dev"]
 FROM node:24-bookworm-slim AS builder
 WORKDIR /app
 
+# Accept build args
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_PUBLIC_APP_NAME
+
+# Set ENV vars for build
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_APP_NAME=$NEXT_PUBLIC_APP_NAME
+ENV NEXT_TELEMETRY_DISABLED=1
+
 # Install global tools
 RUN npm install -g turbo npm
 
-# Copy package files and install all dependencies (dev + prod)
+# Copy package files and install all dependencies
 COPY package*.json ./
 RUN npm install
 
 # Copy source files
-COPY ./ ./
+COPY . .
 
 # Build the app
 RUN npm run build

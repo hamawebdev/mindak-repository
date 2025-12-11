@@ -20,8 +20,10 @@
     "docker:shell": "docker exec -it backend sh || true",
     "docker:build": "docker build . -t backend",
     "migration:generate": "cross-env NODE_ENV=development drizzle-kit generate --config=./src/infra/database/config/drizzle.config.ts",
+    "migration-dev:run": "drizzle-kit migrate --config=./src/infra/database/config/drizzle.config.ts",
     "migration:run": "drizzle-kit migrate --config=./build/infra/database/config/drizzle.config.js",
     "seed": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register src/infra/database/seed.ts",
+    "seed:prod": "node build/infra/database/seed.js",
     "seed:test": "cross-env NODE_ENV=test ts-node -r tsconfig-paths/register src/infra/database/seed.ts"
   },
   "dependencies": {

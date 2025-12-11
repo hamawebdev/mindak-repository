@@ -1,6 +1,6 @@
 // API Client for Client-facing endpoints
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.mindak.agency";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 export class ApiClient {
   private baseUrl: string;
